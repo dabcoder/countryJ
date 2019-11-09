@@ -32,5 +32,6 @@ public class FullResponseBuilder {
                     }
                     fullResponseBuilder.append("\n");
                 });
+        return fullResponseBuilder.toString();
     }
 }

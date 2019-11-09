@@ -5,6 +5,9 @@ import java.net.URL;
 import java.net.HttpURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 
 /**
  * Fetch info about a country
@@ -15,8 +18,7 @@ public class App
     public static final String BASE_COUNTRY_URL =  "https://restcountries.eu/rest/v2/name/";
     public static final String END_URL = "?fullText=true";
 
-    public static void main( String[] args )
-    {
+    public static void main(String[] args) throws IOException, MalformedURLException, ProtocolException {
         Scanner myScanner = new Scanner(System.in);
         System.out.println("Enter a country: ");
 
@@ -33,7 +35,9 @@ public class App
         String contentType = connection.getHeaderField("Content-Type");
 
         FullResponseBuilder fRB = new FullResponseBuilder();
-        fRB.getFullResponse(connection);
+        String response = fRB.getFullResponse(connection);
+
+        System.out.println(response);
 
         /*
         int status = connection.getResponseCode();
